@@ -5,8 +5,15 @@ CREATE TABLE users (
     email varchar(50)
 );
 
-CREATE TABLE account (
+CREATE TABLE produto (
     ID SERIAL PRIMARY KEY,
-    num integer NOT NULL,
-    balance integer DEFAULT 0
+    preco integer NOT NULL,
+    prazo varchar(10),
+    nota integer DEFAULT 0,
+    nome varchar(20)
+);
+
+CREATE TABLE categorie (
+    ID SERIAL PRIMARY KEY,
+    nome varchar(30)
 );

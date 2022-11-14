@@ -14,7 +14,7 @@ con.connect((err) => {
     console.log('Database connected!');
 });
 
-
+// User Routes
 const getAllUsers = (req, res) => {
     con.query('SELECT * FROM users ORDER BY id ASC', (error, results) => {
         if (error) {
@@ -52,14 +52,6 @@ const addUser = (req, res) => {
                 if (error) {
                     throw error;
                 }
-            });
-
-            con.query('INSERT INTO account (num) VALUES (1234)', (error, results) => {
-                if (error) {
-                    throw error;
-                }
-
-                res.status(201).send(`User succesfully created!`);
             });
         }
     });
@@ -103,10 +95,59 @@ const deleteUser = (req, res) => {
 }
 
 
+// Products/Categories Routes
+const getAllCategories = (req, res) => {
+    con.query('SELECT * FROM categoria ORDER BY id ASC', (error, results) => {
+        if (error) {
+            throw error;
+        }
+
+        res.status(200).json(results);
+    })
+}
+
+const getAllProducts = (req, res) => {
+    con.query('SELECT * FROM produto ORDER BY id ASC', (error, results) => {
+        if (error) {
+            throw error;
+        }
+
+        res.status(200).json(results);
+    })
+}
+
+const addProduct = (req, res) => {
+    const { price, time, name } = req.body;
+
+    con.query('INSERT INTO produto (preco, prazo, nome) values (?, ?, ?)', [price, time, name], (error, results) => {
+        if (error) {
+            throw error;
+        }
+
+        res.status(201).send('Product successfully registered!');
+    })
+}
+
+const addCategorie = (req, res) => {
+    const { name } = req.body;
+
+    con.query('INSERT INTO categoria (nome) values (?)', [name], (error, results) => {
+        if (error) {
+            throw error;
+        }
+
+        res.status(201).send('Categorie successfully registered!');
+    })
+}
+
 module.exports = {
     getAllUsers,
     getUser,
     addUser,
     updateUserName,
     deleteUser,
+    addProduct,
+    addCategorie,
+    getAllCategories,
+    getAllProducts
 }

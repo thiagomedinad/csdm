@@ -13,7 +13,7 @@ CREATE TABLE produto (
     nome varchar(20)
 );
 
-CREATE TABLE categorie (
+CREATE TABLE categoria (
     ID SERIAL PRIMARY KEY,
     nome varchar(30)
 );

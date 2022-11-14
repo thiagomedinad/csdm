@@ -95,17 +95,7 @@ const deleteUser = (req, res) => {
 }
 
 
-// Products/Categories Routes
-const getAllCategories = (req, res) => {
-    con.query('SELECT * FROM categoria ORDER BY id ASC', (error, results) => {
-        if (error) {
-            throw error;
-        }
-
-        res.status(200).json(results);
-    })
-}
-
+// Products Routes
 const getAllProducts = (req, res) => {
     con.query('SELECT * FROM produto ORDER BY id ASC', (error, results) => {
         if (error) {
@@ -128,6 +118,18 @@ const addProduct = (req, res) => {
     })
 }
 
+
+// Categories Routes
+const getAllCategories = (req, res) => {
+    con.query('SELECT * FROM categoria ORDER BY id ASC', (error, results) => {
+        if (error) {
+            throw error;
+        }
+
+        res.status(200).json(results);
+    })
+}
+
 const addCategorie = (req, res) => {
     const { name } = req.body;
 
@@ -139,6 +141,7 @@ const addCategorie = (req, res) => {
         res.status(201).send('Categorie successfully registered!');
     })
 }
+
 
 module.exports = {
     getAllUsers,

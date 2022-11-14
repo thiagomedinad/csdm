@@ -1,3 +1,3 @@
 # CSDM PROJECT - DEV VERSION
-#Goal
-- Create a API to CESAR'S Finantial sector!
+# Goal
+- Create an API to CESAR'S Finantial sector!

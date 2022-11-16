@@ -25,6 +25,8 @@ const getAllUsers = (req, res) => {
     })
 }
 
+
+
 const getUser = (req, res) => {
     const name = req.params.id;
     
@@ -107,9 +109,19 @@ const getAllProducts = (req, res) => {
 }
 
 const addProduct = (req, res) => {
-    const { price, time, name } = req.body;
+    const { price, time, name, categorie } = req.body;
 
-    con.query('INSERT INTO produto (preco, prazo, nome) values (?, ?, ?)', [price, time, name], (error, results) => {
+    var categorie_id;
+    con.query('SELECT id FROM categoria WHERE nome = ?', [categorie], (error, results) => {
+        if (error) {
+            throw error;
+        } else {
+            categorie_id = parseInt(JSON.stringify(results[0].id));
+            console.log(results[0].id);
+        }
+    })
+    
+    con.query('INSERT INTO produto2 (categoria_id, preco, prazo, nome) values (?, ?, ?, ?)', [categorie_id, price, time, name], (error, results) => {
         if (error) {
             throw error;
         }

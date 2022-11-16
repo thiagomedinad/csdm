@@ -60,7 +60,7 @@ const addUser = (req, res) => {
 }
 
 const updateUserName = (req, res) => {
-    const name = req.params.id;;
+    const name = req.params.id;
     const { new_name } = req.body;
 
     con.query('UPDATE users SET name = ? WHERE name = ?', 

@@ -38,8 +38,8 @@ CREATE TABLE fornecedor (
 
 CREATE TABLE fornecedor_categoria (
 	id SERIAL,
-	fornecedor_id integer not null,
-	category_id integer not null,
+	fornecedor_id BIGINT UNSIGNED not null,
+	category_id BIGINT UNSIGNED not null,
 	FOREIGN KEY (fornecedor_id) REFERENCES fornecedor(id),
 	FOREIGN KEY (category_id) REFERENCES categoria(id),
 	PRIMARY KEY(id)
@@ -47,8 +47,8 @@ CREATE TABLE fornecedor_categoria (
 
 CREATE TABLE fornecedor_produto (
 	id SERIAL,
-	fornecedor_id integer NOT NULL,
-	produto_id integer NOT NULL,
+	fornecedor_id BIGINT UNSIGNED NOT NULL,
+	produto_id BIGINT UNSIGNED NOT NULL,
 	FOREIGN KEY (fornecedor_id) REFERENCES fornecedor(id),
 	FOREIGN KEY (produto_id) REFERENCES produto(id),
 	PRIMARY KEY(id)
@@ -56,8 +56,8 @@ CREATE TABLE fornecedor_produto (
 
 CREATE TABLE produto_categoria (
 	id SERIAL,
-	produto_id integer NOT NULL,
-	category_id integer NOT NULL,
+	produto_id BIGINT UNSIGNED NOT NULL,
+	category_id BIGINT UNSIGNED NOT NULL,
 	FOREIGN KEY (produto_id) REFERENCES produto(id),
 	FOREIGN KEY (category_id) REFERENCES categoria(id),
 	PRIMARY KEY(id)
@@ -70,21 +70,17 @@ create table interacao (
 	qualidade varchar(255),
 	pagamento varchar(255),
 	impacto_positivo(255),
-	fornecedor_id integer NOT NULL,
+	fornecedor_id BIGINT UNSIGNED NOT NULL,
 	FOREIGN KEY fornecedor_id references fornecedor(id)
 	PRIMARY KEY(id)
 );
 
 create table interacao_produto (
 	id SERIAL,
-	interacao_id integer NOT NULL,
-	produto_id integer NOT NULL,
+	interacao_id BIGINT UNSIGNED NOT NULL,
+	produto_id BIGINT UNSIGNED NOT NULL,
 	quantidade integer NOT NULL,
 	FOREIGN KEY interacao_id REFERENCES interacao(id),
 	FOREIGN KEY produto_id REFERENCES produto(id)
 	PRIMARY KEY(id)
 )
-
-
-
-

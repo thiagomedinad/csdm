@@ -28,7 +28,7 @@ const getAllProducts = (req, res) => {
 }
 
 const addProduct = (req, res) => {
-	const { price, time, rating, name, categorie } = req.body;
+	const { price, time, name, categorie } = req.body;
 	let categorie_id;
 
 	con.query(`SELECT ID FROM categoria WHERE nome = '${categorie}'`, (error, results) => {
@@ -39,7 +39,7 @@ const addProduct = (req, res) => {
 			categorie_id = results[0].ID;
 		}
 
-		con.query(`INSERT INTO produto (categoria_id, preco, prazo, avaliacao, nome) values (${categorie_id}, ${price}, ${time}, ${rating}, "${name}")`,(error, results) => {
+		con.query(`INSERT INTO produto (categoria_id, preco, prazo, nome) values (${categorie_id}, ${price}, ${time}, "${name}")`,(error, results) => {
 			if (error) {
 				console.log(error);
 				throw error;
@@ -48,6 +48,11 @@ const addProduct = (req, res) => {
 			res.status(201).send('Product successfully registered!');
 		});
 	});
+}
+
+// Criar um método
+const rateProduct = (req, res) => {
+
 }
 
 const getProductById = (req, res) => {

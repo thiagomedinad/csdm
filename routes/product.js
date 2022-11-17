@@ -1,7 +1,6 @@
 const { query, request } = require('express');
 var mysql = require('mysql');
 
-
 const con = mysql.createConnection({
 	host: 'db-cesarschool.c83ialoosnfk.us-east-1.rds.amazonaws.com',
 	user: 'admin',
@@ -23,7 +22,7 @@ const getAllProducts = (req, res) => {
 			throw error;
 		}
 
-		res.status(200).json(results);
+		res.status(200).send(results);
 	})
 }
 
@@ -56,19 +55,20 @@ const rateProduct = (req, res) => {
 }
 
 const getProductById = (req, res) => {
-	const { id } = req.body;
+	const { id } = req.params;
 
 	con.query('SELECT * FROM produto2 WHERE (id) = (?)', [id], (error, results) => {
 		if (error) {
 			throw error;
 		}
 
-		res.status(200).json(results);
+		res.status(200).send(results);
 	})
 }
 
 const updateProductName = (req, res) => {
-	const { id, new_name } = req.body;
+	const  { new_name } = req.body;
+	const { id } = req.params;
 
 	con.query('UPDATE produto2 SET (nome)=(?) WHERE (id)=(?)', [new_name, id], (error, results) => {
 		// categoria_id, preco, prazo, nome
@@ -84,66 +84,9 @@ const updateProductName = (req, res) => {
 }
 
 
-// Categories Routes
-const getAllCategories = (req, res) => {
-	con.query('SELECT * FROM categoria ORDER BY id ASC', (error, results) => {
-		if (error) {
-			throw error;
-		}
-
-		res.status(200).json(results);
-	})
-}
-
-const addCategorie = (req, res) => {
-	const { name } = req.body;
-
-	con.query('INSERT INTO categoria (nome) values (?)', [name], (error, results) => {
-		if (error) {
-			throw error;
-		}
-
-		res.status(201).send('Categorie successfully registered!');
-		
-	})
-}
-
-const updateCategorie = (req, res) => {
-	const { id, new_name } = req.body;
-
-	con.query('UPDATE categoria SET (nome)=(?) WHERE (id)=(?)', [new_name, id], (error, results) => {
-		if (error) {
-			throw error;
-		}
-		console.log(id);
-		console.log(new_name);
-
-		res.status(201).send('Category sucessfully updated!');
-
-	})
-}
-
-const getCategorieById = (req, res) => {
-	const { id } = req.body;
-
-	con.query('SELECT * FROM categoria WHERE (id) = (?)', [id], (error, results) => {
-		if (error) {
-			throw error;
-		}
-
-		res.status(200).json(results);
-	})
-}
-
-
-
 module.exports = {
 	addProduct,
-	addCategorie,
-	getAllCategories,
 	getAllProducts,
 	getProductById,
-	getCategorieById,
-	updateCategorie,
 	updateProductName
 }

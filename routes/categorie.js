@@ -34,14 +34,13 @@ const addCategorie = (req, res) => {
 		}
 
 		res.status(201).send('Categorie successfully registered!');
-		
 	})
 }
 
 const updateCategorie = (req, res) => {
     const { id } = req.params;
-	const name = req.body.name;
-    console.log(req.query);
+	const name = req.body;
+
 	con.query(`UPDATE categoria SET nome='${name}' WHERE ID=${id}`, (error, results) => {
 		if (error) {
 			throw error;
@@ -64,7 +63,6 @@ const getCategorieById = (req, res) => {
 }
 
 const deleteCategorie = (req, res) => {
-    
 	const { id } = req.params;
 
 	con.query('DROP * FROM categoria WHERE (id) = (?)', [id], (error, results) => {

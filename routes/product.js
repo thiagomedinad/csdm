@@ -120,7 +120,9 @@ function calculateGrade (time, local, price) {
 	if (price < 100) price_grade = 10
 	else price_grade = 7;
 
-	return (local_grade + time_grade + price_grade)/3
+	const grade = (local_grade + time_grade + price_grade) / 3
+
+	return grade;
 }
 
 module.exports = {

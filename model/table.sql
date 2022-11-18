@@ -45,6 +45,7 @@ CREATE TABLE fornecedor_categoria (
 	PRIMARY KEY(id)
 );
 
+
 CREATE TABLE fornecedor_produto (
 	id SERIAL,
 	fornecedor_id BIGINT UNSIGNED NOT NULL,

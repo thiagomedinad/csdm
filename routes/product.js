@@ -125,6 +125,8 @@ function calculateGrade (time, local, price) {
 	return grade;
 }
 
+
+
 module.exports = {
 	addProduct,
 	getAllProducts,

@@ -29,12 +29,11 @@ app.get('/products', db_prod.getAllProducts);
 app.get('/products/:id', db_prod.getProductById);
 app.post('/products/register', db_prod.addProduct);
 app.put('products/:id', db_prod.updateProductName);
-//app.delete('products/:id', db_prod.delete);
-
+app.put('/products/review/:id', db_prod.rateProduct); // Rota para avaliação do produto após ter sido entregue
 
 // Categorie CRUD Routes
 app.get('/categorie', db_cat.getAllCategories);
-app.get('/categorie/:id', db_cat.getCategorieById); //*
+app.get('/categorie/:id', db_cat.getCategorieById); 
 app.post('/categorie/register', db_cat.addCategorie);
 app.put('/categorie/:id', db_cat.updateCategorie);
 app.delete('/categorie/:id', db_cat.deleteCategorie);
